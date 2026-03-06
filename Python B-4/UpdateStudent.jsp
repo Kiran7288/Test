@@ -159,14 +159,16 @@
 <div class="modal" tabindex="-1" id="updateModal">
   <div class="modal-dialog">
     <div class="modal-content">
-    
+
+
     <!-- header part -->
       <div class="modal-header bg-primary text-white">
         <h5 class="modal-title ">Update Student</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       	
       </div>
-      
+
+
       <!-- body part -->
       <div class="modal-body">
       	
@@ -189,6 +191,7 @@
       
       
       <!-- footer part -->
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" onclick="modify()">Update changes</button>
@@ -201,4 +204,5 @@
 
 
 </body>
+
 </html>
