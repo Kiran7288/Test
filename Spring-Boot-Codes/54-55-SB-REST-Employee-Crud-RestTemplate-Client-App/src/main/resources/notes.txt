@@ -1,0 +1,89 @@
+Application : 54-SB-REST-Employee-Crud-RestTemplate-Client-App
+	-- In this Application we are calling previous application endpoint
+		http://localhost:8081/employee/{id} using RestTemplate.
+	-- Employee Data is retriveing and displaying.
+	-- Two consoles you will see
+	-- Importance of spring-web dependency that why you are using ?
+	-- how to run 01:19:29
+		-- package -DskipTests
+		-- first run 53-APP as a spring boot app
+		-- then run 54-APP
+		-- Note both should be running on different port
+		
+==============================================================================================
+
+After executing Apps, I tried to exclude tomcat using <exclusions> tag in pom.xml
+	<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+        		<exclusion>
+            		<groupId>org.springframework.boot</groupId>
+            		<artifactId>spring-boot-starter-tomcat</artifactId>
+        		</exclusion>
+    		</exclusions>
+		</dependency>
+
+Q. Why am I excluding Tomcat?
+-------------------------------
+Ans: My application does not have any @RestController or GET/POST endpoints.
+However, I still need the spring-boot-starter-web dependency because I want to make REST API calls using RestTemplate.
+
+📝 When to Exclude Tomcat in Spring Boot?
+-----------------------------------------
+
+Exclude Tomcat if your app is not exposing REST endpoints (no @RestController, no GET/POST APIs).
+
+Keep spring-boot-starter-web because it provides RestTemplate (needed to call external REST APIs).
+
+Use spring.main.web-application-type=none (or exclude Tomcat dependency) so the app runs like a console application instead of starting a web server.
+
+👉 Rule of Thumb:
+-----------------
+If your app consumes APIs only → Exclude Tomcat.
+If your app exposes APIs → Keep Tomcat.
+
+=============================================================================
+
+
+
+📌 Important Notes to Run RestTemplate Application
+
+Application Name: 54-SB-REST-Employee-Crud-RestTemplate-Client-App
+
+1. Purpose of Application
+------------------------
+
+--> This app calls endpoints of another application (53-SB-REST-Employee-Crud-App) using RestTemplate.
+--> Example endpoint being consumed:
+	http://localhost:8081/employee/{id}
+--> Employee data is retrieved from Server app and displayed in Client app.
+
+2. Key Points
+------------------------
+--> You will see two consoles running:
+	1. Server App (53-APP) – exposes REST API.
+	2. Client App (54-APP) – consumes API using RestTemplate.
+
+--> Dependency Importance:
+	-- spring-web dependency is mandatory because it provides the RestTemplate class and related HTTP features.
+	-- Without it, you cannot make REST API calls from client app.
+
+3. Steps to Run
+------------------------
+
+1. Build Applications
+	mvn package -DskipTests
+	
+2. Run Server App (53-APP)
+	-- Start it as a Spring Boot app.
+	-- Runs on http://localhost:8081.
+
+3. Run Client App (54-APP)
+	-- Start it as a Spring Boot app.
+	-- Runs on a different port (e.g., 8080).
+
+4. Check Data
+	-- Client app will internally call http://localhost:8081/employee/{id}
+	-- Retrieved employee details are printed/displayed.
+	

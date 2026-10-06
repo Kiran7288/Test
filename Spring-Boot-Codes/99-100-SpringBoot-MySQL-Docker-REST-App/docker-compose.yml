@@ -1,0 +1,38 @@
+#version: "3.8"
+
+services:
+  application:
+    image: my-spring-book-rest-app
+    container_name: spring-container
+    ports:
+      - "8080:8080"
+    networks:
+      -  boot-mysql
+    depends_on:
+      - mysqldb
+      
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 10
+  mysqldb:
+    image: mysql:8
+    container_name: mysqldb-container
+    ports:
+      - "3306:3306"
+    networks:
+      - boot-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=mydb
+    healthcheck:
+     test: ["CMD","mysqladmin","ping","-h","localhost"]
+     interval: 10s
+     retries: 5
+     timeout: 5s
+networks:
+  boot-mysql:
+   name:  sb-mysql-network
+   external: true
+  
+  

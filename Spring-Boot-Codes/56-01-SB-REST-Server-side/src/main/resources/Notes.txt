@@ -1,0 +1,12 @@
+--> Remove Dependency - "jackson-dataformat-xml" from maven site
+	because everywhere we have "application/json"
+
+--> This is a sever code where Exception handling is implements
+--> Use Global exception handler
+--> Tested On postman [worked fine]
+		getEmployee()
+		addEmployee()
+--> com.tca.advice
+	used to write global exception handler.
+	
+

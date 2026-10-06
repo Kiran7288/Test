@@ -1,0 +1,12 @@
+In this application,
+
+We copied last application,
+then added @ApiResponse, @Operation in getEmployee() and addEmployee()
+
+Then after that Customizing OperAI on swagger we page is done
+for that created AppConfig class inside com.tca.api package
+implemented -  @OpenAPIDefinition, @Info, @contact, @Licence @Server
+
+Then added code for Schemas
+--> Go to Employee class from com.tca.entity package
+--> implement @Schema

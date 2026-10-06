@@ -1,0 +1,126 @@
+-->	This Application is doing data Transfer in form of XML
+ 	using properties 'produces' and 'consumes'
+
+--> Add Dependency - "jackson-dataformat-xml" from maven site
+ 	Remove <Version> tag
+
+
+--> Purpose of this application is to see 'produces' & 'consumes' attributes can have multiple values.
+	Then how we can use them by setting headers 'Content-Type' and 'Accept' in Postman
+
+---------------------------------------------------------------------
+📝 Difference from Content-Type
+
+Content-Type: describes the format of the data being sent in the request body.
+
+Example: Content-Type: application/json → "The request body is JSON."
+
+Accept: describes the format the client expects back from the server.
+
+Example: Accept: application/xml → "Please respond in XML."
+
+Example:
+If Postman (or any client) sends:
+	Accept: application/json
+It’s saying:
+➡️ “Hey server, please send me the response in JSON format if you can.”
+-----------------------------------------------------------------------------
+Here I am trying to show that method is ready to produce result in both Media type(XML/JSON)
+But in which mode(xml/json) you want then some changes needed in postman 
+
+Method from controllar is -
+
+@GetMapping(value = "/employee/{id}", 
+				produces={"application/xml", "application/json"}
+			   )
+	public ResponseEntity<Employee> getEmployeeById(@PathVariable Integer id)
+	{}
+
+write this two values in produces attribute and run the application.
+
+output is generated in "XML" format beacuse Spring will take first value from produces.
+
+<Employee>
+    <empno>101</empno>
+    <ename>AAA</ename>
+    <sal>6000.0</sal>
+    <deptno>1111</deptno>
+</Employee>
+
+
+To get result in JSON format - 
+
+now go to header and set type 
+	Accept= application/json
+	
+Output:
+	{
+    "empno": 101,
+    "ename": "AAA",
+    "sal": 6000.0,
+    "deptno": 1111
+}
+
+Now go to header and set Type
+	Accept= application/xml
+
+Output:
+<Employee>
+    <empno>101</empno>
+    <ename>AAA</ename>
+    <sal>6000.0</sal>
+    <deptno>1111</deptno>
+</Employee>
+
+
+============================================
+Test same philosophy for 'consumes'
+============================================
+--> Goto  addEmployee() add two values for 'consumes' attribute
+	
+	@PostMapping(value = "/add", consumes={"application/xml", "application/json"}, produces="application/xml")
+			   			    
+	public ResponseEntity<Employee> addEmployee(@RequestBody Employee e) {
+		}
+
+--> consumes Tells Spring what media types (MIME types) the method can accept in the request body.
+
+Set Content-Type: application/xml
+-------------------------------
+<Employee>
+    <empno>101</empno>
+    <ename>AAA</ename>
+    <sal>6000.0</sal>
+    <deptno>1111</deptno>
+</Employee>
+
+write this xml in Body.
+http://localhost:8081/add
+POST
+Run the application
+
+
+Set Content-Type: application/json
+--------------------------------
+{
+    "empno": 101,
+    "ename": "AAA",
+    "sal": 6000.0,
+    "deptno": 1111
+}
+write this JSON in Body.
+http://localhost:8081/add
+POST
+Run the application
+
+
+
+
+Summerize -
+============
+Accept : measn Client expect in what format it want response.
+
+Content-type : means server can get data in what format 
+
+
+

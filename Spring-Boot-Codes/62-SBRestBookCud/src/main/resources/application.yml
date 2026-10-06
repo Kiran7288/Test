@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: 62-SB-REST-BOOK-CRUD
+  main:
+    banner-mode: 'off'
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3300/mydb
+    username: root
+    password: root
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+server:
+  port: 8081
+
+

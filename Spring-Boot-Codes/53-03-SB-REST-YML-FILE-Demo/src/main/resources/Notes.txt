@@ -1,0 +1,30 @@
+-->	This Application is doing data Transfer in form of XML
+ 	using properties 'produces' and 'consumes'
+
+--> Add Dependency - "jackson-dataformat-xml" from maven site
+ 	Remove <Version> tag
+
+
+--> Purpose of this Application -
+	1. Remove application.properties file
+	2. add 'application.yml' file in src/main/resources
+	3. Run the application
+	4. Now add application.properties file too
+		add server.port=8080
+		check Server is starting on which port.
+		It start on port 8080.
+		means yml files properties get replaced by properties file
+---------------------------------------------------------------------
+
+Write "application.yml" file in "src/main/resources" folder.
+--> I commented all lines from application properties file
+--> run the application 
+	Tomcat started on port 8081
+	
+--> Now adding "server.port=8080" line in application.properties file
+	Run the application.
+	Tomcat started on port 8080.
+	
+Hence Proved,
+	We can keep both the file at a time.
+	Spring search first for application.yml file them application.properties file.	

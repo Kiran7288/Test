@@ -1,0 +1,24 @@
+
+This is client side, "56-01-Server-App" is server side.
+
+Target is to invoke -
+	getEmployee()
+	addEmployee()
+	This rest-api from server.
+
+On success they are working fine.
+
+On Failure expected is 'String' message sent from serverside
+but it is giving stack trace as well, whic is not excepted at client side.
+
+So he will tell about in next session.
+
+So client side run karun nahi dakhavali tari chalel.
+
+Note:
+In Lec 56 , Test server side on Postman only.
+
+By Watching Lec 57 
+----------------------
+Make changes at client application side in MyAppRunner
+
