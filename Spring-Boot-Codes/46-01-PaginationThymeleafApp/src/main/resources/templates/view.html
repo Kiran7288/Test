@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	
+<table border="1">
+	<tr>
+		<th> EMPNO</th>
+		<th> ENAME</th>
+		<th> SAL</th>
+		<th> DEPTNO</th>
+	</tr>
+	
+	<tr th:each="emp: ${employees}">
+		<td th:text="${emp.empno}">empno</td>
+		<td th:text="${emp.ename}">ename</td>
+		<td th:text="${emp.sal}">sal</td>
+		<td th:text="${emp.deptno}">deptno</td>
+	</tr>
+	
+</table>
+
+	<!-- Logic to add Previous and Next Link -->
+	<div>
+		<span th:if="${hasPrevious}"> 
+			<a th:href="@{'/view'(pageNumber=${currentPage-1})}"> Previous</a>
+		</span>
+		<span th:unless="${hasPrevious}" style="color: grey; cursor: not-allowed;">Previous</span> <!-- If no previous record then non-clickable -->
+		|Page : <span th:text="${currentPage}" ></span>|  <!-- Displaying current page-->
+		<span th:if="${hasNext}"> 
+					<a th:href="@{'/view'(pageNumber=${currentPage+1})}"> Next</a>
+		</span>
+		<span th:unless="${hasNext}" style="color: grey; cursor: not-allowed;">Next</span>
+	</div>	
+
+
+</body>
+</html>

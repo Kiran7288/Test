@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+		<title>User Page</title>
+	</head>
+	<body>
+		<form th:action = "@{/register}"  method = "post" th:object="${user}">
+			<table>
+				<tr>
+					<td> Username</td>                    
+					<td> <input type="text" th:field = "*{username}"/> </td>
+					<td> <font color='red'> 
+							<span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+						 </font> </td>    <!-- Tags to show errors from messages.properties -->
+				</tr>
+				<tr>
+					<td> Email </td>
+					<td> <input type="text"  th:field = "*{email}"/> </td>
+					<td> <font color='red'> 
+							<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+						</font> </td>
+				</tr>
+				<tr>
+					<td> Mobile </td>
+					<td> <input type="text" th:field = "*{mobile}"/> </td>
+					<td> <font color='red'> 
+							<span th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></span> 
+						</font> </td>
+				</tr>
+				<tr>
+				    <td> Gender </td>
+				    <td>
+				        <input type="radio" th:field="*{gender}" th:value="Male" > Male
+				        <input type="radio" th:field="*{gender}" th:value="Female" > Female
+				    </td>
+				    <td>
+				        <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" style="color:red;"></span>
+				    </td>
+				</tr>
+				<tr>
+					<td> Date of Birth </td>
+					<td> <input type="date" th:field = "*{dob}"/> </td>
+					<td> <font color='red'> 
+							<span th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></span> 
+						</font> 
+					</td>
+				</tr>
+			</table>
+			<input type = "submit"  value = "Submit Form">
+		</form>
+	</body>
+</html>
+						
